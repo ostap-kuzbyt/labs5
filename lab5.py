@@ -27,22 +27,28 @@ class PhoneStore:
         return sorted_phones
     # This method takes a maximum budget as an argument and returns a list of available phones that fall within that budget.
 
+def main():
+    phone1 = Smartphone("Model A", 500, ["123-456-7890", "987-654-3210"], 64, 3000)
+    phone2 = Smartphone(
+        "Model B", 700, ["555-123-4567", "111-222-3333"], 128, 4000)
+    phone3 = Smartphone("Model C", 400, ["999-888-7777", "444-555-6666"], 32, 2500)
 
-phone1 = Smartphone("Model A", 500, ["123-456-7890", "987-654-3210"], 64, 3000)
-phone2 = Smartphone(
-    "Model B", 700, ["555-123-4567", "111-222-3333"], 128, 4000)
-phone3 = Smartphone("Model C", 400, ["999-888-7777", "444-555-6666"], 32, 2500)
+    store = PhoneStore()
+    store.add_phone(phone1)
+    store.add_phone(phone2)
+    store.add_phone(phone3)
 
-store = PhoneStore()
-store.add_phone(phone1)
-store.add_phone(phone2)
-store.add_phone(phone3)
+    max_budget = 600
+    print(f'Max budget = {max_budget}')
+    best_phones = store.find_best_phone(max_budget)
 
-max_budget = 600
-print(f'max budget = {max_budget}')
-best_phones = store.find_best_phone(max_budget)
+    print("Phones within budget:")
+    for phone in best_phones:
+        print(f"Model: {phone.model},\
+            Price: {phone.price},\
+                 Storage: {phone.storage_capacity}GB,\
+                     Battery: {phone.battery_capacity}mAh")
 
 
-print("Phones within budget:")
-for phone in best_phones:
-    print(f"Model: {phone.model}, Price: {phone.price}, Storage: {phone.storage_capacity}GB, Battery: {phone.battery_capacity}mAh")
+if __name__ == "__main__":
+    main()
